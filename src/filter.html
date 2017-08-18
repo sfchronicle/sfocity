@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= json.project.seo_title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="__sync_contentCategory" content="meterA">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="http://projects.sfchronicle.com/shared/js/jquery.min.js"></script>
+    <%= t.include("partials/_embedframe.html") %>
+
+
+  </head>
+
+  <body is='responsive-body'>
+
+    <div class="outer">
+
+      <div class="hed"></div>
+      <div class="chatter">View our picks by terminal</div>
+
+      <div id="top"></div>
+
+      <div class="filter">
+        <select id="select">
+          <option selected disabled>Terminals</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="international">International</option>
+        </select>
+      </div>
+
+      
+
+      <div id="1" class="terminal">
+
+        <table class="t-table">
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Traveler</th>
+              <th>Security</th>
+            </tr>
+          </thead>
+          <tbody>
+        <% json.Sheet1.forEach(function(d){ %>
+          <% var str = d.terminal.toString().split(','); %>
+          <% if (str.includes('1')) { %>
+          
+            <tr>
+              <td><%= d.name%></td>
+              <td><%= d.persona%></td>
+              <td><%= d.security%></td>
+            </tr>
+          
+      
+        <% }}); %>
+          </tbody>
+         </table>
+      </div>
+
+
+      <div id="2" class="terminal">
+
+        <table class="t-table">
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Traveler</th>
+              <th>Security</th>
+            </tr>
+          </thead>
+          <tbody>
+        <% json.Sheet1.forEach(function(d){ %>
+          <% var str = d.terminal.toString().split(','); %>
+          <% if (str.includes('2')) { %>
+
+           <tr>
+              <td><%= d.name%></td>
+              <td><%= d.persona%></td>
+              <td><%= d.security%></td>
+            </tr>
+      
+        <% }}); %>
+          </tbody>
+         </table>
+      </div>
+
+      <div id="3" class="terminal">
+
+        <table class="t-table">
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Traveler</th>
+              <th>Security</th>
+            </tr>
+          </thead>
+          <tbody>
+        <% json.Sheet1.forEach(function(d){ %>
+          <% var str = d.terminal.toString().split(','); %>
+          <% if (str.includes('3')) { %>
+
+           <tr>
+              <td><%= d.name%></td>
+              <td><%= d.persona%></td>
+              <td><%= d.security%></td>
+            </tr>
+      
+        <% }}); %>
+          </tbody>
+         </table>
+      </div>
+
+      <div id="International" class="terminal">
+
+        <table class="t-table">
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Traveler</th>
+              <th>Security</th>
+            </tr>
+          </thead>
+          <tbody>
+        <% json.Sheet1.forEach(function(d){ %>
+          <% var str = d.terminal.toString().split(','); %>
+          <% if (str.includes('international')) { %>
+
+
+           <tr>
+              <td><%= d.name%></td>
+              <td><%= d.persona%></td>
+              <td><%= d.security%></td>
+            </tr>
+      
+        <% }}); %>
+          </tbody>
+         </table>
+      </div>
+
+
+
+     
+
+
+      <div class="divider"></div>
+
+    
+      <script type="text/javascript">
+       
+
+        $("select")
+          .change(function () {
+            var str = "";
+            $( "select option:selected" ).each(function() {
+              str += $( this ).text();
+              $('.terminal').hide();
+              $('#'+str).show();
+            });
+          })
+          
+      </script>
+
+    </div>
+  </body>
+</html>

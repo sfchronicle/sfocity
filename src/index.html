@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= json.project.seo_title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <%= t.include("partials/_embedframe.html") %>
+  </head>
+
+  <body is='responsive-body'>
+
+    <div class="outer">
+
+      <div class="hed">City of SFO</div>
+      <div class="chatter">Airports like San Francisco International are becoming more like mini cities – shopping, family entertainment, museums, dining, public art. Here’s how you can get the most out of SFO based on which traveler archetype you are and what you need.</div>
+
+      
+
+      <div class="button-container">
+        <% json.persona.personas.forEach(function(section,idx){ %>
+          <% if (idx == 0) { %>
+            <div class="button selected" id="button<%=section.slug%>"><img src="./assets/icons/<%=section.slug%>.png"></div>
+          <% } else { %>
+            <div class="button" id="button<%=section.slug%>"><img src="./assets/icons/<%=section.slug%>.png"></div>
+          <% } %>
+        <% }) %>
+      </div>
+
+      <% json.persona.personas.forEach(function(section,idx){ %>
+
+        <% if (idx == 0) { %>
+          <div class="section selected" id="section<%=section.slug%>">
+        <% } else { %>
+          <div class="section" id="section<%=section.slug%>">
+        <% } %>
+
+          <div class="inline-img">
+            <img src="./assets/photos/<%=section.photo%>.png">
+          </div>
+
+          <div class="section-content">
+            <div class="section-title"><%=section.title%></div>
+            <div class="sub-section"><%=section.description%></div>
+            <%  section.list.forEach(function(list){ %>
+            <% var type = list.type.replace('drug_of_choice','Drug of Choice').replace('good_to_know','Good to Know')
+               var text = list.value.replace('**','<b>').replace('*','</b>') %>
+            <div class="section-text"><span class="type"><%= type %></span>: <%= text %></div>
+            <% }); %>
+          </div>
+        </div>
+
+      <% }); %>
+
+      
+
+
+    </div>
+
+    <script src="app.js" async></script>
+    <%= t.include("partials/_helloSFC.html") %>
+
+  </body>
+</html>
